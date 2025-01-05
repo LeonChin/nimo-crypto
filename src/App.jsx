@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import HomePage from "./Pages/Homepage";
+import HomePage from "./Pages/HomePage";
 import CoinPage from "./Pages/CoinPage";
 import { css } from "@emotion/css";
 import "./App.css";
