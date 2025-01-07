@@ -8,6 +8,8 @@ import { CircularProgress } from "@mui/material";
 import { chartDays } from "../config/data";
 import SelectedButton from "./SelectedButton";
 import axios from "axios";
+import "chart.js/auto";
+import { orange } from "@mui/material/colors";
 
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
@@ -54,7 +56,7 @@ const CoinInfo = ({ coin }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Wrapper>
-        {!historicData | (flag === false) ? (
+        {!historicData || flag === false ? (
           <CircularProgress
             style={{ color: "orange" }}
             size={250}
@@ -62,8 +64,7 @@ const CoinInfo = ({ coin }) => {
           />
         ) : (
           <>
-            <Typography>Charts coming soon</Typography>
-            {/* <Line
+            <Line
               data={{
                 labels: historicData.map((coin) => {
                   let date = new Date(coin[0]);
@@ -73,12 +74,11 @@ const CoinInfo = ({ coin }) => {
                       : `${date.getHours()}:${date.getMinutes()} AM`;
                   return days === 1 ? time : date.toLocaleDateString();
                 }),
-
                 datasets: [
                   {
                     data: historicData.map((coin) => coin[1]),
                     label: `Price ( Past ${days} Days ) in ${currency}`,
-                    borderColor: "#EEBC1D",
+                    borderColor: "orange",
                   },
                 ],
               }}
@@ -103,14 +103,14 @@ const CoinInfo = ({ coin }) => {
                   key={day.value}
                   onClick={() => {
                     setDays(day.value);
-                    setFlag(false);
+                    setflag(false);
                   }}
                   selected={day.value === days}
                 >
                   {day.label}
                 </SelectedButton>
               ))}
-            </div> */}
+            </div>
           </>
         )}
       </Wrapper>
